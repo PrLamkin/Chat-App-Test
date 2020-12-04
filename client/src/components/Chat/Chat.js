@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 
 let socket;
 
+
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
@@ -17,8 +18,9 @@ const Chat = ({ location }) => {
         setName(name);
         setRoom(room);
 
-        console.log(socket)
-    });
+        socket.emit('join', { name, room });
+
+   }, [ENDPOINT, location.search]);
 
     return (
         <h1>chat</h1>
